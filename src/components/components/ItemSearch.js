@@ -1,15 +1,24 @@
 import React from "react";
-
-const { ge } = require("osrs-json-api");
+import axios from "axios";
+// const { ge } = require("osrs-json-api");
 
 const ItemSearch = () => {
   let displayitem;
 
-  ge.getItem(12934)
+  axios
+    .get(
+      "https://cors-anywhere.herokuapp.com/http://services.runescape.com/m=itemdb_oldschool/api/catalogue/detail.json?item=12934"
+    )
     .then(response => {
-      displayitem = response;
-    })
-    .catch(console.error);
+      console.log(response);
+      displayitem = response.data;
+    });
+
+  //   ge.getItem(12934)
+  //     .then(response => {
+  //       displayitem = response;
+  //     })
+  //     .catch(console.error);
 
   return (
     <>
