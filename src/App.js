@@ -1,11 +1,11 @@
 import React from "react";
 import "./App.css";
-import ItemSearch from "./components/ItemSearch";
+import ItemFilter from "./components/ItemFilter";
 
 function App() {
   return (
     <div className="App">
-      <ItemSearch />
+      <ItemFilter />
     </div>
   );
 }
