@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import ItemCard from "./ItemCard";
-// import axios from 'axios';
+// import ItemCard from "./ItemCard";
+// import ItemDisplay from "./ItemDisplay";
+import axios from "axios";
 import "../index.css";
 
 const items = [
@@ -3660,32 +3661,18 @@ const items = [
 ];
 
 export default function SearchForm() {
-  // TODO: Add useState to track data from useEffect
   const [searchResults, setSearchResults] = useState([]);
+  const [data, setData] = useState({item:{icon:"",icon_large:"",id:0,type:"",typeIcon:"",name:"",description:"",current:{trend:"",price:0},today:{trend:"",price:0},members:false,day30:{trend:"",change:""},day90:{trend:"",change:""},day180:{trend:"",change:""}}});
   const completeList = items;
-  // let changes = 0;
-
-  // useEffect(() => {
-  //   // TODO: Add API Request here - must run in `useEffect`
-  //   //  Important: verify the 2nd `useEffect` parameter: the dependancies array!
-  //   axios.get("https://rickandmortyapi.com/api/character/").then(res => {
-  //     // setCharacters(res.data.results);
-  //     console.log(res.data.results);
-  //     setCharacters(res.data.results);
-  //     setCompleteList(res.data.results);
-  //   }).catch(e => console.log(e));
-  // }, [changes]);
 
   const handleChange = event => {
     setSearchResults(
       items.filter(
         item =>
           item.name.toLowerCase().includes(event.target.value.toLowerCase())
-        //   item.status.toLowerCase().includes(event.target.value.toLowerCase()) ||
-        //   item.species.toLowerCase().includes(event.target.value.toLowerCase())
+        // item.id.includes(event.target.value)
       )
     );
-    // changes++;
     console.log(event.target.value);
 
     if (event.target.value === "") {
@@ -3695,9 +3682,21 @@ export default function SearchForm() {
     }
     console.log(searchResults);
   };
+  const ItemSearch = id => {
+
+    axios
+      .get(
+        `https://cors-anywhere.herokuapp.com/http://services.runescape.com/m=itemdb_oldschool/api/catalogue/detail.json?item=${id}`
+      )
+      .then(response => {
+        console.log(response);
+        setData(response.data);
+      });
+  };
 
   return (
     <section className="search-form">
+      <h3>{data.item.current.price}</h3>
       <form>
         <label>
           Search
@@ -3705,31 +3704,21 @@ export default function SearchForm() {
             <input
               type="text"
               name="search"
-              placeholder="Search for come content!"
-              // value={user.name}
+              placeholder="Search for some items"
               onChange={event => handleChange(event)}
             />
           </div>
         </label>
       </form>
       <div>
-        {searchResults.map(result => (
-          <ItemCard name={result.name} id={result.id} />
+        {searchResults.slice(0, 10).map(result => (
+          <div>
+            <button className="suggested" onClick={() => ItemSearch(result.id)}>
+              {result.name}
+            </button>
+          </div>
         ))}
       </div>
-      {/* <div className="generic-list">
-      {characters.map(character => 
-          <CharacterCard
-            id={character.id}
-            name={character.name}
-            species={character.species}
-            image={character.image}
-            gender={character.gender}
-            status={character.status}
-          />   
-          )
-      }
-      </div> */}
     </section>
   );
 }
