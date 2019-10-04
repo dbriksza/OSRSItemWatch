@@ -1,11 +1,11 @@
 import React from "react";
 import "./App.css";
-import ItemFilter from "./components/ItemFilter";
+import ItemCardContainer from "./components/ItemCardContainer";
 
 function App() {
   return (
     <div className="App">
-      <ItemFilter />
+      <ItemCardContainer />
     </div>
   );
 }
