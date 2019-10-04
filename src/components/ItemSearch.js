@@ -1,6 +1,5 @@
 import React from "react";
 import axios from "axios";
-// const { ge } = require("osrs-json-api");
 
 const ItemSearch = () => {
   let displayitem;
@@ -13,12 +12,6 @@ const ItemSearch = () => {
       console.log(response);
       displayitem = response.data;
     });
-
-  //   ge.getItem(12934)
-  //     .then(response => {
-  //       displayitem = response;
-  //     })
-  //     .catch(console.error);
 
   return (
     <>

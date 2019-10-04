@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import ItemSearch from "./components/components/ItemSearch";
+import ItemSearch from "./components/ItemSearch";
 
 function App() {
   return (
