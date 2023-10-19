@@ -3689,7 +3689,6 @@ export default function SearchForm() {
         `https://secure.runescape.com/m=itemdb_oldschool/api/catalogue/detail.json?item=${id}`
       )
       .then(response => {
-        console.log(response);
         setData(response.data);
       });
   };
