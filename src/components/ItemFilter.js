@@ -3686,7 +3686,7 @@ export default function SearchForm() {
 
     axios
       .get(
-        `https://services.runescape.com/m=itemdb_oldschool/api/catalogue/detail.json?item=${id}`
+        `https://secure.runescape.com/m=itemdb_oldschool/api/catalogue/detail.json?item=${id}`
       )
       .then(response => {
         console.log(response);
