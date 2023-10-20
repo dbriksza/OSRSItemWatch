@@ -3685,7 +3685,7 @@ export default function SearchForm() {
   const ItemSearch = id => {
   var opts = {
     headers: {
-      'mode':'cors'
+      'mode':'no-cors'
     }
   }
     fetch(
