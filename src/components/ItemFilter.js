@@ -3684,8 +3684,7 @@ export default function SearchForm() {
   };
   const ItemSearch = id => {
 
-    axios
-      .get(
+    fetch(
         `https://secure.runescape.com/m=itemdb_oldschool/api/catalogue/detail.json?item=${id}`
       )
       .then(response => {
