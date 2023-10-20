@@ -3683,9 +3683,13 @@ export default function SearchForm() {
     console.log(searchResults);
   };
   const ItemSearch = id => {
-
+  var opts = {
+    headers: {
+      'mode':'cors'
+    }
+  }
     fetch(
-        `https://secure.runescape.com/m=itemdb_oldschool/api/catalogue/detail.json?item=${id}`
+        `https://secure.runescape.com/m=itemdb_oldschool/api/catalogue/detail.json?item=${id}`, opts
       )
       .then(response => {
         setData(response.data);
